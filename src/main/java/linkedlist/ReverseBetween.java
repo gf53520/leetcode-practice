@@ -14,10 +14,10 @@ public class ReverseBetween {
     }
 
     // fake出一个节点否则需要考虑m=1与m!=1情况
-    ListNode fake = new ListNode(-1);
-    fake.next = head;
+    ListNode dummy = new ListNode(-1);
+    dummy.next = head;
 
-    ListNode prev = fake;
+    ListNode prev = dummy;
     int j = m;
     while (--j > 0) {
       prev = prev.next;
@@ -32,9 +32,9 @@ public class ReverseBetween {
       ListNode tmp = cut.next; // 3
       cut.next = tmp.next; // 2->4
       tmp.next = prev.next;  // 3->2
-      prev.next= tmp; // 1->3
+      prev.next = tmp; // 1->3
     }
-    return fake.next;
+    return dummy.next;
   }
 
   public static void main(String[] args) {

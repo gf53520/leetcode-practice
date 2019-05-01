@@ -4,38 +4,58 @@ package linkedlist;
 public class ReverseList {
 
   // 递归：r(1->2->3->4->5->NULL) = (r(2->3->4->5->NULL) = 5->4->3->2) +
-//  public static ListNode reverseList(ListNode head) {
-//    if (head == null || head.next == null) {
-//      return head;
-//    }
-//
-//    ListNode newHead = reverseList(head.next);
-//    head.next.next = head;
-//    head.next = null;
-//
-//    return newHead;
-//  }
+  public static ListNode reverseListIII(ListNode head) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+
+    ListNode newHead = reverseListIII(head.next);
+    head.next.next = head;
+    head.next = null; // 勿忘记
+
+    return newHead;
+  }
 
   // 非递归，1->2->3->4->5->NULL
   // Detail: 2->1, 3->2, 4->3, 5->4,
   // => 5->4->3->2->1->NULL
-  public static ListNode reverseList(ListNode head) {
+  public static ListNode reverseListI(ListNode head) {
     if (head == null || head.next == null) {
       return head;
     }
-    ListNode cut = head;
-    ListNode next = head.next;
-    ListNode nextNext = null;
-    while (next != null) {
-      nextNext = next.next;
-      next.next = cut;
-      cut = next;
-      next = nextNext;
+    ListNode prev = head;
+    ListNode cut = head.next;
+    ListNode after = null;
+    while (cut != null) {
+      after = cut.next;
+      cut.next = prev;
+      prev = cut;
+      cut = after;
     }
-    // 注意此处head的next需要设置为null。
+    // 注意: 此处head的next需要设置为null，勿忘记，否则存在环
     head.next = null;
-    return cut;
+    return prev;
   }
+
+  //dummy->1->2->3->4->5 //cut是1，after是2
+  //dummy->2->1->3->4->5 //cut是1，after是3
+  //dummy->3->2->1->4->5
+  public static ListNode reverseListII(ListNode head) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+    ListNode dummy = new ListNode(-1);
+    dummy.next = head;
+    ListNode cut = head;
+    while (cut.next != null) {
+      ListNode after = cut.next;
+      cut.next = after.next;
+      after.next = dummy.next;
+      dummy.next = after;
+    }
+    return dummy.next;
+  }
+
 
   public static void main(String[] args) {
     ListNode listNode1 = new ListNode(1);
@@ -50,7 +70,8 @@ public class ReverseList {
     listNode5.next = null;
 
     // 1->2->3->4->5->NULL => 5->4->3->2->1->NULL
-    ListNode res = reverseList(listNode1);
+//    ListNode res = reverseListI(listNode1);
+    ListNode res = reverseListII(listNode1);
     while (res != null) {
       System.out.println(res.val);
       res = res.next;

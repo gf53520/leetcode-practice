@@ -8,6 +8,8 @@ package linkedlist;
   Input: -1->5->3->4->0
   Output: -1->0->3->4->5
  */
+// 148，先获取链表中间节点，再归并排序
+// 在 O(n log n) 时间复杂度和常数级空间复杂度下，对链表进行排序。
 public class SortList {
 
   public static ListNode sortList(ListNode head) {
@@ -17,9 +19,7 @@ public class SortList {
     }
     ListNode middle = getMiddle(head);
     ListNode next = middle.next;
-    middle.next = null; // 断开两个子集之间的联系
-    System.out.println("head = " + head.val);
-    System.out.println("middle = " + middle.val);
+    middle.next = null; // 断开子集之间的联系
     return merge(sortList(head), sortList(next));
   }
 
@@ -27,7 +27,6 @@ public class SortList {
     ListNode fake = new ListNode(0);
     ListNode cut = fake;
 
-//    ListNode fake = new ListNode(0);
     while (l1 != null && l2 != null) {
       if (l1.val < l2.val) {
         cut.next = l1;
@@ -56,6 +55,7 @@ public class SortList {
 
     ListNode slow = head;
     ListNode fast = head;
+    // 1->2->3
     while (fast.next != null && fast.next.next != null) {
       slow = slow.next;
       fast = fast.next.next;
@@ -64,7 +64,7 @@ public class SortList {
   }
 
   //  -1->5->3->4->0
-  public static void main(String[] args){
+  public static void main(String[] args) {
     ListNode listNode1 = new ListNode(-1);
     ListNode listNode2 = new ListNode(5);
     ListNode listNode3 = new ListNode(3);

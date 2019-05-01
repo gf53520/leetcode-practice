@@ -9,17 +9,15 @@ public class LengthOfLongestSubstring {
       return 0;
     }
     int start = 0;
-    int lastMaxLen = 1;
-    int currentLen = 1;
+    int lastMaxLen = Integer.MIN_VALUE;
     for (int end = 1; end < s.length(); end++) {
       String cut = s.substring(end, end + 1);
       String prefix = s.substring(start, end);
       if (prefix.contains(cut)) {
-        start = s.indexOf(cut, start)+1;
+        start = s.indexOf(cut, start) + 1;
       }
-      currentLen = end - start + 1;
-      if (currentLen > lastMaxLen) {
-        lastMaxLen = currentLen;
+      if (end - start + 1 > lastMaxLen) {
+        lastMaxLen = end - start + 1;
       }
     }
     return lastMaxLen;

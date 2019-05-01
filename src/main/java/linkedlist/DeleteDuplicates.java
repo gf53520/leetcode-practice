@@ -12,17 +12,18 @@ public class DeleteDuplicates {
     if (head == null || head.next == null) {
       return head;
     }
-    ListNode cur = head;
-    while (cur.next != null) {
-      if (cur.val == cur.next.val) {
-        cur.next = cur.next.next;
+    ListNode cut = head;
+    while (cut.next != null) {
+      if (cut.val == cut.next.val) {
+        cut.next = cut.next.next; // 注意
       } else {
-        cur = cur.next;
+        cut = cut.next;
       }
     }
     return head;
   }
 
+  // Given 1->1->2->3->3, return 1->2->3.
   public static ListNode deleteDuplicates2(ListNode head) {
     if (head == null || head.next == null) {
       return head;
@@ -36,7 +37,7 @@ public class DeleteDuplicates {
       }
       p1 = p1.next;
     }
-    p0.next = null;   // 否则会导致结尾会仍然有重复数据情况
+    p0.next = null;   // 断开链接, 否则会导致结尾会仍然有重复数据情况
     return head;
   }
 
@@ -46,11 +47,13 @@ public class DeleteDuplicates {
     ListNode listNode3 = new ListNode(2);
     ListNode listNode4 = new ListNode(3);
     ListNode listNode5 = new ListNode(3);
+    ListNode listNode6 = new ListNode(3);
     listNode1.next = listNode2;
     listNode2.next = listNode3;
     listNode3.next = listNode4;
     listNode4.next = listNode5;
-    listNode5.next = null;
+    listNode5.next = listNode6;
+    listNode6.next = null;
 
     ListNode res = deleteDuplicates2(listNode1);
     while (res != null) {
