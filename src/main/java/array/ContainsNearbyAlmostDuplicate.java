@@ -18,7 +18,7 @@ public class ContainsNearbyAlmostDuplicate {
         return true;
       }
       set.add(ele);
-      if (i - k >= 0) {
+      if (i - k >= 0) { // 维持一个k区间的数组
         set.remove((long) nums[i - k]);
       }
     }

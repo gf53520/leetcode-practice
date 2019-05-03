@@ -17,9 +17,9 @@ public class SortList {
       // 这里注意判断head是否为单个节点
       return head;
     }
-    ListNode middle = getMiddle(head);
+    ListNode middle = getMiddle(head); // find middle
     ListNode next = middle.next;
-    middle.next = null; // 断开子集之间的联系
+    middle.next = null; // 注意断开子集之间的联系
     return merge(sortList(head), sortList(next));
   }
 
