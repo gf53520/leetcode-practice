@@ -12,7 +12,8 @@ import java.util.HashMap;
 //  prefix sum: 0 1 2 3
 //  [0] => p[1]-p[0], [0,1] => p[2]-p[0], [0,n-1] => p[n] - p[0]
 //  [n-1] => p[n] - p[n-1], [n-2, n-1] => p[n] - p[n-2]
-public class SubarraySum {
+public class SubArraySum {
+
   public int subarraySum(int[] nums, int k) {
     if (nums.length == 0) {
       return 0;
@@ -57,7 +58,7 @@ public class SubarraySum {
   }
 
   public static void main(String[] args) {
-    SubarraySum subarraySum = new SubarraySum();
+    SubArraySum subarraySum = new SubArraySum();
     System.out.println(subarraySum.subarraySum2(new int[]{1, 2, 1, 2, 1}, 3));
   }
 }

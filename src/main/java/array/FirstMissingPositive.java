@@ -11,7 +11,7 @@ import java.util.Arrays;
 Input: [3,4,-1,1]
 Output: 2
  */
-// 目标数组的第i位存正数i+1
+// 目标数组第i位存i+1， nums[i] = i+1; nums[nums[i]-1] = nums[i]
 public class FirstMissingPositive {
 
   public int firstMissingPositive(int[] nums) {

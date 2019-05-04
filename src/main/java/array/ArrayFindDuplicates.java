@@ -11,10 +11,8 @@ package array;
  */
 // 1,3,4,2,2
 // l  m  r
-// 0  2  4, cut = 3
-// 0  0  1, cut = 0
-// 1  1  1, cut = 1
 
+// 或者快慢指针找到环的起点
 public class ArrayFindDuplicates {
 
   public int findDuplicates(int[] nums) {
