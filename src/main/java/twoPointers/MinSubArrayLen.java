@@ -1,8 +1,22 @@
-package dp;
+package twoPointers;
 
 // 209 长度最小的子数组，大于等于s https://leetcode-cn.com/problems/minimum-size-subarray-sum/
-// 滑动窗口概念
+// 双指针，均从0开始
 public class MinSubArrayLen {
+  public int minSubArrayLen0506(int s, int[] nums) {
+    int min = Integer.MAX_VALUE;
+    int sum = 0, left = 0;
+    for (int right = 0; right < nums.length; right++) {
+      sum = sum + nums[right];
+      while (left <= right && sum >= s) {
+        if (right - left + 1 < min) {
+          min = right - left + 1;
+        }
+        sum = sum - nums[left++];
+      }
+    }
+    return min;
+  }
 
   public int minSubArrayLen(int s, int[] nums) {
     int minLen = Integer.MAX_VALUE;
@@ -41,8 +55,11 @@ public class MinSubArrayLen {
 
   public static void main(String[] args) {
     MinSubArrayLen minSubArrayLen = new MinSubArrayLen();
-//    int res = minSubArrayLen.minSubArrayLen(7, new int[]{2, 3, 1, 2, 4, 3});
-    int res = minSubArrayLen.minSubArrayLen(4, new int[]{1, 4, 4});
-    System.out.println("res = " + res);
+    System.out.println(minSubArrayLen.minSubArrayLen(7, new int[]{2, 3, 1, 2, 4, 3}));
+    System.out.println(minSubArrayLen.minSubArrayLen0506(7, new int[]{2, 3, 1, 2, 4, 3}));
+    System.out.println(minSubArrayLen.minSubArrayLen(4, new int[]{1, 4, 4}));
+    System.out.println(minSubArrayLen.minSubArrayLen0506(4, new int[]{1, 4, 4}));
+    System.out.println(minSubArrayLen.minSubArrayLen(7, new int[]{2, 3, 1, 2, 4, 3}));
+    System.out.println(minSubArrayLen.minSubArrayLen0506(7, new int[]{2, 3, 1, 2, 4, 3}));
   }
 }

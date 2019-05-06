@@ -1,6 +1,7 @@
 package tree;
 
 // 124. 二叉树中的最大路径和
+// 路径的起点和终点可以是任意的树节点
 public class MaxPathSum {
   public int max = Integer.MIN_VALUE;
 

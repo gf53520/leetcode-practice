@@ -23,6 +23,7 @@ public class RemoveNthFromEnd {
     while (n-- > 0) {
       high = high.next;
     }
+
     if(high == null) { // 表示删除最后一个节点
       return low.next;
     } else {

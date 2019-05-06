@@ -7,6 +7,7 @@ import java.util.Arrays;
 public class HeapSort {
 
   // 小 => 大， 非稳定算法
+  // 正序，最小堆
   public static void heapSort(int[] arr) {
     int len = arr.length;
     for (int i = len / 2; i > 0; i--) { // 对所有非叶子节点进行下浮操作
@@ -36,7 +37,8 @@ public class HeapSort {
     // 数组下标从1 => n-1
     int[] arr = new int[]{Integer.MIN_VALUE, 1, 1, 8, 2, 1, 4, 6, 7,
         3, 5, 9, 6, 11, 19, 13, 55, 67, 32, 22};
-    heapSort(arr); // 最小堆
+    heapSort(arr);
+    System.out.println(Arrays.toString(arr));
 
     // 输出从大到小
     for (int i = 1; i < arr.length; i++) {

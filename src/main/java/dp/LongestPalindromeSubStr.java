@@ -1,7 +1,31 @@
-package others;
+package dp;
 
 // 5. Longest Palindromic Substring
-public class LongestPalindrome {
+public class LongestPalindromeSubStr {
+
+  // dp[i][j], 表示从i到j是否为回文串
+  // dp[i][j] = ch[i] == ch[j] && (j -i <= 2 || dp[i+1][j-1])
+  // 从i侧来看，因为i需要使用i+1；从j侧看只使用了j-1，因此将j放到外层循环来执行dp
+  public static String dp_LongestPalindrome(String s) {
+    if (s == null || s.length() == 0) {
+      return s;
+    }
+    String solution = "";
+    int max = Integer.MIN_VALUE;
+    boolean[][] dp = new boolean[s.length()][s.length()];
+    for (int j = 0; j < s.length(); j++) {
+      for (int i = 0; i <= j; i++) {
+        dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i <= 2 || dp[i + 1][j - 1]);
+        if (dp[i][j]) {
+          if (j - i + 1 > max) {
+            max = j - i + 1;
+            solution = s.substring(i, j + 1);
+          }
+        }
+      }
+    }
+    return solution;
+  }
 
   // babade
   // edabab
@@ -23,31 +47,6 @@ public class LongestPalindrome {
       if (tmp2.length() > maxLen) {
         maxLen = tmp2.length();
         res = tmp2;
-      }
-    }
-    return res;
-  }
-
-  // dp[i][j], 表示从i到j是否为回文串
-  // 递推公式：dp[i][j] = ch[i] == ch[j] && (j -i <= 2 || dp[i+1][j-1])
-  // dp[1][3] = ch[i] == ch[j] && (j -i <= 2)
-  // babad
-  public static String dp_LongestPalindrome(String s) {
-    if (s == null || s.length() == 0) {
-      return s;
-    }
-    int max = 0;
-    String res = "";
-    boolean[][] dp = new boolean[s.length()][s.length()];
-    for (int j = 0; j < s.length(); j++) {
-      for (int i = 0; i <= j; i++) {
-        dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i <= 2 || dp[i + 1][j - 1]);
-        if (dp[i][j]) {
-          if (j - i + 1 > max) {
-            max = j - i + 1;
-            res = s.substring(i, j + 1);
-          }
-        }
       }
     }
     return res;

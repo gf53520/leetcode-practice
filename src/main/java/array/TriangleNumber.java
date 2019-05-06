@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 public class TriangleNumber {
 
-
   // [2,2,3,4] => 3
   public int triangleNumber(int[] nums) {
     if (nums.length <= 2) {
