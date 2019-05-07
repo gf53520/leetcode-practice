@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class InOrder {
+// 144  https://leetcode-cn.com/problems/binary-tree-preorder-traversal/
+public class PreOrder {
 
-  public List<Integer> inorderTraversal(TreeNode root) {
+  public List<Integer> preorderTraversal(TreeNode root) {
     List<Integer> solutions = new ArrayList<>();
     if (root == null) {
       return solutions;
@@ -14,17 +15,15 @@ public class InOrder {
 
     Stack<TreeNode> stack = new Stack<>();
     TreeNode cut = root;
-    while (cut != null || !stack.empty()) {
+    while (cut != null || !stack.isEmpty()) {
       while (cut != null) {
+        solutions.add(cut.val);
         stack.push(cut);
         cut = cut.left;
       }
-
-      TreeNode node = stack.pop();
-      solutions.add(node.val);
-      cut = node.right;
+      TreeNode peek = stack.pop();
+      cut = peek.right;
     }
     return solutions;
   }
-
 }
