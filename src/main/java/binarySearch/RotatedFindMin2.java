@@ -17,7 +17,7 @@ public class RotatedFindMin2 {
     int left = 0;
     int right = nums.length - 1;
 
-    while (left + 1 < right) {
+    while (left <= right) {
       int mid = left + (right - left) / 2;
       if (nums[mid] < nums[right]) { // 后半段递增, 最小值在左边
         right = mid;
@@ -27,7 +27,7 @@ public class RotatedFindMin2 {
         right--;
       }
     }
-    return Math.min(nums[left], nums[right]);
+    return nums[left];
   }
 
   public static void main(String[] args) {

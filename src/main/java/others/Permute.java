@@ -3,8 +3,7 @@ package others;
 import java.util.ArrayList;
 import java.util.List;
 
-// 46
-// //给定一个没有重复数字的序列，返回其所有可能的全排列。
+// 46 给定一个没有重复数字的序列，返回其所有可能的全排列。
 public class Permute {
 
   public List<List<Integer>> permute(int[] nums) {
@@ -41,7 +40,7 @@ public class Permute {
 
   public static void main(String[] args) {
     Permute permute = new Permute();
-    permute.permute(new int[]{1, 2, 3});
+    permute.permute(new int[]{1, 2, 2, 3});
     System.out.println("over");
   }
 

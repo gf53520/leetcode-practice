@@ -17,20 +17,23 @@ public class RotatedSearch2 {
       if (nums[mid] == target) {
         return true;
       }
-      // 处理特殊的case，解决重复数据问题
+
+      // 处理特殊的case，解决存在重复数据, 导致后面的判断失准
       if (nums[left] == nums[mid] && nums[right] == nums[mid]) {
         left++;
         right--;
         continue;
       }
 
+      // mid两边的数组，必然有一个子数组存在有序
+      // 因此有 nums[mid] <= nums[right] 或者 nums[left] <= nums[mid]
       if (nums[left] <= nums[mid]) { // 左边有序
         if (nums[left] <= target && target < nums[mid]) { // 左边中间
           right = mid - 1;
         } else {
           left = mid + 1;
         }
-      } else { // mid两边的数组，必然有一个子数组存在有序，因此有 nums[mid] <= nums[right]
+      } else { // 右边有序
         if (nums[mid] < target && target <= nums[right]) { // 右边中间
           left = mid + 1;
         } else {
