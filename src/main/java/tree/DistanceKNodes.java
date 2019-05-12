@@ -1,6 +1,6 @@
 package tree;
 
-// 863
+// 863 https://leetcode-cn.com/problems/all-nodes-distance-k-in-binary-tree/
 // 给定一个二叉树（具有根结点 root）， 一个目标结点 target ，和一个整数值 K 。
 // 返回到目标结点 target 距离为 K 的所有结点的值的列表。 答案可以以任何顺序返回。
 // 输入：root = [3,5,1,6,2,0,8,null,null,7,4], target = 5, K = 2
@@ -34,7 +34,7 @@ public class DistanceKNodes {
     if (l >= 0) {
       if (l == K - 1) {
         solutions.add(root.val);
-      } else {
+      } else { // 继续去右子树中查找K - l - 2
         collect(root.right, K - l - 2, solutions);
       }
       return l + 1;
@@ -43,12 +43,11 @@ public class DistanceKNodes {
     if (r >= 0) {
       if (r == K - 1) {
         solutions.add(root.val);
-      } else {
+      } else { // 继续去右子树中查找K - r - 2
         collect(root.left, K - r - 2, solutions);
       }
       return r + 1;
     }
-
     return -1;
   }
 

@@ -11,13 +11,6 @@ public class UniquePathsI {
   public int uniquePaths(int m, int n) {
     int[][] dp = new int[n + 1][m + 1]; // n为行，m为列
     for (int i = 1; i < n + 1; i++) {
-      dp[i][0] = 0;
-    }
-    for (int j = 1; j < m + 1; j++) {
-      dp[0][j] = 0;
-    }
-
-    for (int i = 1; i < n + 1; i++) {
       for (int j = 1; j < m + 1; j++) {
         if (i == 1 && j == 1) {
           dp[1][1] = 1;

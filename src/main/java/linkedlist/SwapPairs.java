@@ -4,8 +4,39 @@ package linkedlist;
 // 24. Swap Nodes in Pairs
 // https://leetcode.com/problems/swap-nodes-in-pairs
 public class SwapPairs {
-
+  // 1->2->3->4  => 2->1->4->3， 偶数
+  // 1->2->3->4->5  => 2->1->4->3->5，奇数
+  // 2->1 3->4->5
   public static ListNode swapPairs(ListNode head) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+    ListNode solution = head.next;
+
+    ListNode cut = head;
+    ListNode connect = null; // 链接节点
+    ListNode next;
+    while (cut != null && cut.next != null) {
+      next = cut.next;
+      ListNode tmp = next.next;
+      next.next = cut;
+      cut.next = null; // 断开和后面pair的链接
+      if (connect != null) {
+        connect.next = next;
+      }
+      // for 下一轮
+      connect = cut;
+      cut = tmp;
+    }
+    // 继续处理奇数
+    if (cut != null) {
+      connect.next = cut;
+    }
+    return solution;
+  }
+
+
+  public static ListNode swapPairs2(ListNode head) {
     if (head == null) {
       return head;
     }
@@ -15,7 +46,8 @@ public class SwapPairs {
     }
 
     // 1->2->3->4->5  => 2->1->4->3->5，奇数
-    // 1->2->3->4  => 2->1->4->3， 偶数
+    // 2-1->3->4->5
+    // 2-1-4-3->5
     ListNode prev = head;
     ListNode current = head;
     while (current != null && current.next != null) {
@@ -42,7 +74,7 @@ public class SwapPairs {
     listNode2.next = listNode3;
     listNode3.next = listNode4;
     listNode4.next = listNode5;
-    listNode4.next = null;
+    listNode5.next = null;
 
     ListNode res = swapPairs(listNode1);
     while (res != null) {

@@ -3,7 +3,7 @@ package tree;
 import java.util.LinkedList;
 
 // 111 https://leetcode.com/problems/minimum-depth-of-binary-tree/
-// The minimum depth is the number of nodes along the shortest pathfrom the root node down to the nearest leaf node.
+// The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
 // recursive(dfs) or bfs
 
 public class MinDepth {

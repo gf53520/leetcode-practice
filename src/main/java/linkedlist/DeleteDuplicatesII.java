@@ -22,12 +22,12 @@ public class DeleteDuplicatesII {
         if (prev.next == cut) { //通过引用来判断，相等则需要保留当前节点
           prev = prev.next;
         }
-        prev.next = cut.next; // 预先假设下一节点保留
+        prev.next = cut.next; // 先假设下一节点保留
         cut = cut.next;
       }
     }
 
-    if (prev.next != cut) { // 引用判断不等，移除最后一个节点
+    if (prev.next != cut) { // 通过引用判断不等，移除最后一个节点
       prev.next = null;
     }
     return dummy.next;

@@ -33,9 +33,9 @@ public class BinarySearch {
     int right = nums.length - 1;
     int solution = -1;
 
-    while (left <= right) { // 边界条件
-      int mid = left + (right - left) / 2; // mid更靠近左边
-      if (nums[mid] >= target) {
+    while (left <= right) {
+      int mid = left + (right - left) / 2;
+      if (nums[mid] >= target) { // 寻找第一个大于等于target的元素
         if (nums[mid] == target) {
           solution = mid;
         }
@@ -53,15 +53,15 @@ public class BinarySearch {
     int right = nums.length - 1;
     int solution = -1;
 
-    while (left <= right) { // 边界条件
+    while (left <= right) {
       int mid = left + (right - left) / 2;
-      if (nums[mid] == target) {
-        left = mid + 1;
-        solution = mid;
-      } else if (nums[mid] < target) {
-        left = mid + 1;
-      } else {
+      if (nums[mid] > target) { // 寻找第一个大于target的元素
         right = mid - 1;
+      } else {
+        if (nums[mid] <= target) {
+          solution = mid;
+        }
+        left = mid + 1;
       }
     }
     return solution;

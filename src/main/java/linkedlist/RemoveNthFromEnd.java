@@ -18,25 +18,23 @@ public class RemoveNthFromEnd {
       return head;
     }
 
-    ListNode low = head;
-    ListNode high = head;
+    ListNode prev = head;
+    ListNode cut = head;
     while (n-- > 0) {
-      high = high.next;
+      cut = cut.next;
     }
-
-    if(high == null) { // 表示删除最后一个节点
-      return low.next;
+    // 首先 cut 指针先向前走N步，如果最终 cut 指向空，说明N为链表的长度，
+    // 则需要移除的为首元素，那么此时我们返回 prev.next 即可
+    if (cut == null) { // 表示删除头部节点
+      return prev.next;
     } else {
-      while (high.next != null) {
-        low = low.next;
-        high = high.next;
+      while (cut.next != null) {
+        prev = prev.next;
+        cut = cut.next;
       }
-      low.next = low.next.next;
+      prev.next = prev.next.next;
       return head;
     }
   }
 
-  public static void main(String[] args) {
-
-  }
 }
