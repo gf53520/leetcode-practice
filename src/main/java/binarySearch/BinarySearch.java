@@ -4,13 +4,11 @@ package binarySearch;
 704. Binary Search
 https://leetcode.com/problems/binary-search/
  */
-// 开区间搜索 [l, r) => while(l<r)
-// 闭区间搜索 [l, r] => while(l<=r), 查找区间不为空
+// lower_bound 第一个大于等于target的元素下标
+// upper_bound 第一个大于target的元素下标
 public class BinarySearch {
 
   // Input: nums = [-1,0,3,5,9,12], target = 9
-
-  // [闭区间]搜索
   public static int search(int[] nums, int target) {
     int left = 0;
     int right = nums.length - 1;
@@ -27,44 +25,34 @@ public class BinarySearch {
     return -1;
   }
 
-  // [闭区间]搜索
   public static int lower_bound(int[] nums, int target) {
     int left = 0;
-    int right = nums.length - 1;
-    int solution = -1;
+    int right = nums.length;
 
-    while (left <= right) {
+    while (left < right) {
       int mid = left + (right - left) / 2;
       if (nums[mid] >= target) { // 寻找第一个大于等于target的元素
-        if (nums[mid] == target) {
-          solution = mid;
-        }
-        right = mid - 1;
+        right = mid;
       } else {
         left = mid + 1;
       }
     }
-    return solution;
+    return left;
   }
 
-  // [闭区间]搜索
   public static int upper_bound(int[] nums, int target) {
     int left = 0;
-    int right = nums.length - 1;
-    int solution = -1;
+    int right = nums.length;
 
-    while (left <= right) {
+    while (left < right) {
       int mid = left + (right - left) / 2;
       if (nums[mid] > target) { // 寻找第一个大于target的元素
-        right = mid - 1;
+        right = mid;
       } else {
-        if (nums[mid] <= target) {
-          solution = mid;
-        }
         left = mid + 1;
       }
     }
-    return solution;
+    return left;
   }
 
 
@@ -73,9 +61,11 @@ public class BinarySearch {
 
     System.out.println("search = " + search(arr, 5));
 
+    System.out.println("lower_bound 5 = " + lower_bound(arr, 5));
     System.out.println("lower_bound 6 = " + lower_bound(arr, 6));
     System.out.println("lower_bound 7 = " + lower_bound(arr, 7));
 
+    System.out.println("upper_bound 5 = " + upper_bound(arr, 5));
     System.out.println("upper_bound 6 = " + upper_bound(arr, 6));
     System.out.println("upper_bound 7 = " + upper_bound(arr, 7));
   }

@@ -15,28 +15,28 @@ public class MergeSort {
   }
 
   private static void merge(int[] arr, int start, int mid, int end) {
-    int r1 = mid + 1;
-    int[] tmp = new int[arr.length];
-    int tempIndex = start;
-    int arrIndex = start;
+    int[] result = new int[arr.length];
+    int resultArrayIndex = start;
+    int array1Index = start;
+    int array2Index = mid + 1;
 
-    while (start <= mid && r1 <= end) {
-      if (arr[start] <= arr[r1]) {
-        tmp[tempIndex++] = arr[start++];
+    while (array1Index <= mid && array2Index <= end) {
+      if (arr[array1Index] <= arr[array2Index]) {
+        result[resultArrayIndex++] = arr[array1Index++];
       } else {
-        tmp[tempIndex++] = arr[r1++];
+        result[resultArrayIndex++] = arr[array2Index++];
       }
     }
 
-    while (start <= mid) { // arr2还有剩余元素
-      tmp[tempIndex++] = arr[start++];
+    while (array1Index <= mid) { // array1还有剩余元素
+      result[resultArrayIndex++] = arr[array1Index++];
     }
 
-    while (r1 <= end) { // arr1还有剩余元素
-      tmp[tempIndex++] = arr[r1++];
+    while (array2Index <= end) { // array2还有剩余元素
+      result[resultArrayIndex++] = arr[array2Index++];
     }
-    for (int i = arrIndex; i <= end; i++) {
-      arr[i] = tmp[i];
+    for (int i = start; i <= end; i++) {
+      arr[i] = result[i];
     }
     return;
   }

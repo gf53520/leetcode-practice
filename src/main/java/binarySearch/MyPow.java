@@ -7,6 +7,9 @@ Implement pow(x, n), which calculates x raised to the power n (xn).
 // 50, 减少乘法次数, logn
 public class MyPow {
 
+  // myPow(x, n) =>
+  //  myPow(x, n/2) * myPow(x, n/2) 偶数
+  //  myPow(x, n/2) * myPow(x, n/2) (* x) 奇数
   public double myPow(double x, long n) {
     if (n == 0)
       return 1;

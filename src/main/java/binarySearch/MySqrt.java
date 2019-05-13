@@ -19,13 +19,11 @@ public class MySqrt {
 
     while (left < right) {
       int mid = left + (right - left) / 2;
-//      System.out.println("before: " + left + " " + mid + " " + right);
       if (mid > x / mid) {
         right = mid;
       } else {
         left = mid + 1;
       }
-//      System.out.println("after: " + left + " " + mid + " " + right);
     }
     return left - 1;
   }

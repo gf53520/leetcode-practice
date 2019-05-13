@@ -8,14 +8,16 @@ public class LRUCache {
 
   private int capacity;
   private Map<Integer, Node> state;
-  private Node head = new Node(-1, -1);
-  private Node tail = new Node(-1, -1);
+  private Node head;
+  private Node tail;
 
   public LRUCache(int capacity) {
-    this.state = new HashMap<>();
     this.capacity = capacity;
-    head.next = tail;
-    tail.prev = head;
+    this.state = new HashMap<>();
+    this.head = new Node(-1, -1);
+    this.tail = this.head;
+    this.head.next = this.tail;
+    this.tail.prev = this.head;
   }
 
   public int get(int key) {
@@ -58,6 +60,10 @@ public class LRUCache {
     head.next = newNode;
   }
 
+  public boolean isEmpty() {
+    return this.head.next == this.tail && this.tail.prev == this.head;
+  }
+
   public class Node {
     Node prev;
     Node next;
@@ -72,7 +78,9 @@ public class LRUCache {
 
   public static void main(String[] args) {
     LRUCache cache = new LRUCache(2 /* capacity */);
+    System.out.println(cache.isEmpty());
     cache.put(1, 1);
+    System.out.println(cache.isEmpty());
     cache.put(2, 2);
     System.out.println(cache.get(1));// returns 1
     cache.put(3, 3);    // evicts key 2
@@ -81,6 +89,7 @@ public class LRUCache {
     System.out.println(cache.get(1));       // returns -1 (not found)
     System.out.println(cache.get(3));       // returns 3
     System.out.println(cache.get(4));       // returns 4
+    System.out.println(cache.isEmpty());
   }
 
 }

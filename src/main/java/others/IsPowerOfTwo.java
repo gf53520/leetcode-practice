@@ -16,7 +16,7 @@ public class IsPowerOfTwo {
     return n == 1;
   }
 
-  // n & (n - 1) 表示将n的二进制最后一位变为0
+  // n & (n - 1) 表示将n的二进制最后一位变为0，且2次方只存在一位为1
   public boolean isPowerOfTwo(int n) {
     return n > 0 && (n & (n - 1)) == 0;
   }
